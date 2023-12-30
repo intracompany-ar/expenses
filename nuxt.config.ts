@@ -1,19 +1,45 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import type { NuxtPage } from 'nuxt/schema'
+
 export default defineNuxtConfig({
 	devtools: { enabled: true },
 
+	vite: {
+					css: {
+					preprocessorOptions: {
+									scss: {
+									additionalData: '@use "~/assets/_colors.scss" as *;'
+									}
+					}
+					},
+					vue: {
+									customElement: true
+					}
+	},
+
 	modules: [
-		'@pinia/nuxt',
-		'@nuxtjs/tailwindcss'
+				'nuxt-icon',
+					'@pinia/nuxt',
+					'@nuxtjs/tailwindcss'
 	],
 
 	tailwindcss: {
-		exposeConfig: true,
-		viewer: true,
-		// and more...
+					exposeConfig: true,
+					viewer: true,
+					
+					cssPath: '~/assets/css/tailwind.css',
+					configPath: '~/config/tailwind.js',
+					exposeLevel: 2,
+					config: {},
+					injectPosition: 'first',
 	},
-	// css: ['/assets/css/main.css'],
-	// Variables por entorno 
+
+	css: [
+					'/assets/css/main.css'
+	],
+
+	
+	// Variables por entorno
 	// $production: {
 	//   routeRules: {
 	//     '/**': { isr: true }
@@ -33,19 +59,5 @@ export default defineNuxtConfig({
 	//   public: {
 	//     apiBase: '/api'
 	//   }
-	},
-
-
-	vite: {
-		css: {
-		preprocessorOptions: {
-			scss: {
-			additionalData: '@use "~/assets/_colors.scss" as *;'
-			}
-		}
-		},
-		vue: {
-			customElement: true
-		}
 	}
 })

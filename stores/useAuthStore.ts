@@ -10,11 +10,10 @@ export const useAuthStore = defineStore('auth', () => {
     
     const user = ref<User | null>(null);
 
-    const isLoggedIn = computed(() => !!user.value);
+    const isLoggedIn = computed(() => user.value);
 
     async function fetchUser() {
-        const { data } = await useApiFetch('/api/user')
-
+        const { data, error } = await useApiFetch('/api/user')
         user.value = data.value as User;
     }
 

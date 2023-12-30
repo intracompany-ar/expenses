@@ -8,7 +8,7 @@ definePageMeta({
 
 <template>
   <div>
-Invitado
+    Invitado
   </div>
 </template>
 
