@@ -8,8 +8,8 @@ definePageMeta({
 
 const form = ref({
 	// email: 'fulano@neuper.com.ar',
-	name: 'adpalarich',
-	password: 'a33922990',
+	name: '',
+	password: '',
 	application_id: 1 // Le tengo que poner un valor nuevo a expenses
 })
 
@@ -44,8 +44,8 @@ function disableButton() {
 				<div class="flex justify-center">
 					<div class="sm:offset-2 sm:col-span-11 md:offset-4 md:col-span-4">
 						<form @submit.prevent="login" v-on:submit="disableButton">
-							<input type="text" v-model="form.name" class="border rounded py-2 px-3" />
-							<input type="password" v-model="form.password" class="border rounded py-2 px-3" />
+							<input type="text" v-model="form.name" name="name" class="border rounded py-2 px-3" />
+							<input type="password" v-model="form.password" name="password" class="border rounded py-2 px-3" />
 							<br>
 							<button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Login</button>
 						</form>

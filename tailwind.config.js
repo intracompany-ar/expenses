@@ -1,7 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 /** @type {import('tailwindcss').Config} */
-console.log(${ srcDir })
 export default {
 	theme: {
 		extend: {
