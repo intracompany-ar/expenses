@@ -1,63 +1,62 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import type { NuxtPage } from 'nuxt/schema'
-
 export default defineNuxtConfig({
+
 	devtools: { enabled: true },
 
 	vite: {
-					css: {
-					preprocessorOptions: {
-									scss: {
-									additionalData: '@use "~/assets/_colors.scss" as *;'
-									}
-					}
-					},
-					vue: {
-									customElement: true
-					}
+		css: {
+			preprocessorOptions: {
+				scss: {
+					additionalData: '@use "~/assets/_colors.scss" as *;'
+				}
+			}
+		},
+		vue: {
+			customElement: true
+		}
 	},
 
 	modules: [
-				'nuxt-icon',
-					'@pinia/nuxt',
-					'@nuxtjs/tailwindcss'
+		'nuxt-icon',
+		'@pinia/nuxt',
+		'@nuxtjs/tailwindcss',
 	],
 
 	tailwindcss: {
-					exposeConfig: true,
-					viewer: true,
-					
-					cssPath: '~/assets/css/tailwind.css',
-					configPath: '~/config/tailwind.js',
-					exposeLevel: 2,
-					config: {},
-					injectPosition: 'first',
+		exposeConfig: true,
+		viewer: true,
+		
+		cssPath: '~/assets/css/tailwind.css',
+		configPath: '~/config/tailwind.js',
+		exposeLevel: 2,
+		config: {},
+		injectPosition: 'first',
 	},
 
 	css: [
-					'/assets/css/main.css'
+		'/assets/css/main.css'
 	],
 
 	
 	// Variables por entorno
-	// $production: {
+	$production: {
 	//   routeRules: {
 	//     '/**': { isr: true }
 	//   }
-	// },
-	// $development: {
-	//   //
-	// }
+	},
+	$development: {
+	
+	},
 
 
 	//  Variables public se mestra, las demás quedan en backend
 	
 	runtimeConfig: {
-	//   // The private keys which are only available server-side
+	  // The private keys which are only available server-side
 	//   apiSecret: '123',
-	//   // Keys within public are also exposed client-side
-	//   public: {
-	//     apiBase: '/api'
-	//   }
+	  // Keys within public are also exposed client-side
+		public: {
+			appBase: process.env.APP_URL,
+			apiBase: process.env.API_URL,
+		}
 	}
 })

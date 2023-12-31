@@ -1,10 +1,13 @@
 import type { UseFetchOptions } from '#app'
 
 export function useApiFetch<T>(path: string | (() => string), options: UseFetchOptions<T> = {}) {
+
+	const config = useRuntimeConfig()
+
 	let headers: any = {
 		// https://laravel.com/docs/10.x/sanctum#spa-authentication
 		accept: 'application/json',
-		referer: 'http://localhost:3000',// Hace que laravel detecte es es un EnsureFrontendRequestsAreStateful
+		referer: config.public.appBase,// Hace que laravel detecte es es un EnsureFrontendRequestsAreStateful
 	}
 
 	const token = useCookie('XSRF-TOKEN'); // Esto es equivalente a getCookie en Axios, lo pide documentación Laravel Sanctum 
@@ -21,7 +24,7 @@ export function useApiFetch<T>(path: string | (() => string), options: UseFetchO
 	}
 
 
-	return useFetch('http://localhost'+path, {
+	return useFetch(config.public.apiBase+path, {
 		credentials: 'include',// Esto es equivalente a withCredentials en Axios, ver docu Laravel Sanctum, persiste cookie me parece
 		watch: false, // Sino la reactidiad de vue hace como un eco...
 		...options,
