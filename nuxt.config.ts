@@ -17,8 +17,8 @@ export default defineNuxtConfig({
 
 	modules: [
 		'nuxt-icon',
-		'@pinia/nuxt',
 		'@nuxtjs/tailwindcss',
+		'@pinia/nuxt',
 	],
 
 	tailwindcss: {
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
 		viewer: true,
 		
 		cssPath: '~/assets/css/tailwind.css',
-		configPath: '~/config/tailwind.js',
+		configPath: '~/tailwind.config.js',
 		exposeLevel: 2,
 		config: {},
 		injectPosition: 'first',
@@ -36,11 +36,13 @@ export default defineNuxtConfig({
 		'/assets/css/main.css'
 	],
 
-	
+	srcDir: './',
+
 	// Variables por entorno
 	$production: {
+		appId: 8
 	//   routeRules: {
-	//     '/**': { isr: true }
+	    // '/**': { isr: true }
 	//   }
 	},
 	$development: {

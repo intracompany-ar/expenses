@@ -36,13 +36,13 @@ const balanceAcumulado = computed(() => {
     <!-- SIN USO POR AHORA <SelectPresupuesto/> -->
 
     Balance Acumulado
-    <h1 class="text-4xl font-bold text-gray-800">${{ balanceAcumulado }}</h1>
+    <h1 class="tw-text-4xl tw-font-bold tw-text-gray-800">${{ balanceAcumulado }}</h1>
 
     <!-- <MensualSwitch/> -->
-    <div class="bg-gray-100 rounded-md p-4 max-h-100 overflow-y-auto">
+    <div class="tw-bg-gray-100 tw-rounded-md p-4 tw-max-h-100 tw-overflow-y-auto">
         Detalle Mensual
-        <ShowCategory color="bg-green-500" route-to="/create-income" category="Ingresos" :amount="amount.income"></ShowCategory>
-        <ShowCategory color="bg-red-500" route-to="/create-expense" category="Gastos" :amount="amount.expenses"></ShowCategory>
+        <ShowCategory color="tw-bg-green-500" route-to="/create-income" category="Ingresos" :amount="amount.income"></ShowCategory>
+        <ShowCategory color="tw-bg-red-500" route-to="/create-expense" category="Gastos" :amount="amount.expenses"></ShowCategory>
         <!-- <ShowCategory color="bg-yellow-500" category="Ahorros" :amount="amount.saves"></ShowCategory>
         <ShowCategory color="bg-blue-500" category="Tarjetas" :amount="amount.cards"></ShowCategory> -->
 

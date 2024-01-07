@@ -1,11 +1,16 @@
-import defaultTheme from 'tailwindcss/defaultTheme'
+// import defaultTheme from 'tailwindcss/defaultTheme'
+
+const srcDir = '.'
 
 /** @type {import('tailwindcss').Config} */
 export default {
+
+	prefix: 'tw-',
+
 	theme: {
 		extend: {
 			colors: {
-				primary: defaultTheme.colors.green
+				// primary: defaultTheme.colors.green
 			}
 		},
 	},

@@ -5,13 +5,13 @@
 
 <template>
     <div class="mb-3 ml-3">
-        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+        <div class="tw-relative tw-inline-block tw-w-10 tw-mr-2 tw-align-middle tw-select-none tw-transition tw-duration-200 ease-in">
             
-            <input type="checkbox" name="mensual" id="mensual" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" v-model="mensual" value="1">
+            <input type="checkbox" name="mensual" id="mensual" class="tw-toggle-checkbox tw-absolute tw-block tw-w-6 tw-h-6 tw-rounded-full tw-bg-white tw-border-4 tw-appearance-none tw-cursor-pointer" v-model="mensual" value="1">
             
-            <label for="mensual" class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer"></label>
+            <label for="mensual" class="tw-toggle-label tw-block tw-overflow-hidden tw-h-6 tw-rounded-full tw-cursor-pointer"></label>
         </div>
 
-        <label for="mensual" class="text-xs text-gray-700 dark:text-gray-500">Mensual</label>
+        <label for="mensual" class="tw-text-xs tw-text-gray-700 tw-dark:text-gray-500">Mensual</label>
     </div>
 </template>

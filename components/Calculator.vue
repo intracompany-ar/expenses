@@ -14,7 +14,7 @@ const total = computed(() => {
 
 <template>
     <div>
-        <div class="text-ligth" :class="{'bg-green-500': type == 'income', 'bg-red-500': type == 'income' }">{{ total }}</div>
+        <div class="tw-text-ligth" :class="{'bg-green-500': type == 'income', 'bg-red-500': type == 'income' }">{{ total }}</div>
 
 
         Input importe con calculadora incluida

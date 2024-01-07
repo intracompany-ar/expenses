@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 import { definePageMeta } from '#imports'
 
 definePageMeta({
@@ -36,18 +36,24 @@ function disableButton() {
 		</template>
 
 		<template #content>
-			<div class="mb-4 font-medium text-sm text-green-600">
+			<div class="tw-mb-4 tw-font-medium tw-text-sm tw-text-green-600">
 				<!-- Status -->
 			</div>
 
-			<div class="container mt-4">
-				<div class="flex justify-center">
-					<div class="sm:offset-2 sm:col-span-11 md:offset-4 md:col-span-4">
+			<div class="tw-container tw-mt-4">
+				<div class="tw-flex tw-justify-center">
+					<div class="tw-sm:offset-2 tw-sm:col-span-11 tw-md:offset-4 tw-md:col-span-4">
 						<form @submit.prevent="login" v-on:submit="disableButton">
-							<input type="text" v-model="form.name" name="name" class="border rounded py-2 px-3" />
-							<input type="password" v-model="form.password" name="password" class="border rounded py-2 px-3" />
+
+							<input type="text" v-model="form.name" name="name" class="tw-border tw-rounded tw-py-2 tw-px-3 tw-my-2" />
+
 							<br>
-							<button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Login</button>
+
+							<input type="password" v-model="form.password" name="password" class="tw-border tw-rounded tw-py-2 tw-px-3" />
+							<br>
+							<div class="tw-text-center">
+								<button type="submit" class="tw-bg-blue-500 tw-text-white tw-py-2 tw-px-4 tw-rounded tw-my-2">Login</button>
+							</div>
 						</form>
 					</div>
 				</div>
