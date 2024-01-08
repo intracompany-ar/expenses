@@ -1,11 +1,8 @@
-<script setup lang="ts">
+<script setup>
+import { ref } from 'vue'
 import { definePageMeta } from '#imports'
-// // Use a static import for server-side compatibility
-// import '~/assets/css/first.css'
-
-// Caution: Dynamic imports are not server-side compatible
-// import('~/assets/css/first.css')
-// @import url("~/assets/css/second.css");
+import {useMonthYearStore} from '~/stores/useMonthYearStore'
+const storeMonthYear = useMonthYearStore();
 
 definePageMeta({
     middleware: ['auth'],
@@ -14,39 +11,55 @@ definePageMeta({
 
 const message = ref('')
 
-const amount = reactive({
-    income: 34324,
-    expenses: 5555,
-    saves: 66,
-    cards: 40
-})
+const {data: balanceAcumulado} = await useApiFetch('/api/journalEntry/balance')
 
-
-const balanceAcumulado = computed(() => {
-    // TODO: traer desde backend
-    return 5555;
-
-})
+let showCategoryGetRows = null;
+const setChildMethod = (method) => { showCategoryGetRows = method; };
+function getBalances()
+{
+    if (showCategoryGetRows) {
+        showCategoryGetRows(storeMonthYear.month, storeMonthYear.year);
+    }
+}
 </script>
 
 <template>
+    
     <AppAlert v-if="message">
         This is an auto-imported component.
     </AppAlert>
+
     <!-- SIN USO POR AHORA <SelectPresupuesto/> -->
 
-    Balance Acumulado
-    <h1 class="tw-text-4xl tw-font-bold tw-text-gray-800">${{ balanceAcumulado }}</h1>
+    <div class="container-fluid">
+        
+        <MonthYearSelect v-on:selected="getBalances()" />
 
-    <!-- <MensualSwitch/> -->
-    <div class="tw-bg-gray-100 tw-rounded-md p-4 tw-max-h-100 tw-overflow-y-auto">
-        Detalle Mensual
-        <ShowCategory color="tw-bg-green-500" route-to="/create-income" category="Ingresos" :amount="amount.income"></ShowCategory>
-        <ShowCategory color="tw-bg-red-500" route-to="/create-expense" category="Gastos" :amount="amount.expenses"></ShowCategory>
-        <!-- <ShowCategory color="bg-yellow-500" category="Ahorros" :amount="amount.saves"></ShowCategory>
-        <ShowCategory color="bg-blue-500" category="Tarjetas" :amount="amount.cards"></ShowCategory> -->
 
-        <!-- Resumen Mensual -->
-        <!-- <CircularChart /> -->
+        <div class="row tw-pt-2">
+            <b>Saldo de Caja</b>
+            <div class="col-12 tw-text-center">
+                <h1 class="tw-text-4xl tw-font-bold tw-text-gray-800">${{ balanceAcumulado }}</h1>
+            </div>
+            <!-- <MensualSwitch/> -->
+        </div>
+        <hr>
+
+        <div class="row tw-pt-2">
+            <b>Detalle Mensual</b>
+            <div class="tw-bg-gray-100 tw-rounded-md p-4 tw-max-h-100 tw-overflow-y-auto">
+                <ShowCategory v-on:expose="setChildMethod" color="tw-bg-green-400 tw-my-2" route-show="/show-journal-entry-by-account"  route-create="/create-income" category="Ingresos"/>
+                <ShowCategory v-on:expose="setChildMethod" color="tw-bg-red-400" route-show="/show-journal-entry-by-account" route-create="/create-outcome" category="Egresos"/>
+                <!-- <ShowCategory color="bg-yellow-500" category="Ahorros"></ShowCategory>
+                <ShowCategory color="bg-blue-500" category="Tarjetas"></ShowCategory> -->
+                <!-- Resumen Mensual -->
+                <!-- <CircularChart /> -->
+            </div>
+        </div>
+
+
     </div>
+
+
+
 </template>

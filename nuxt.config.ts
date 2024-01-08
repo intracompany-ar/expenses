@@ -1,5 +1,7 @@
 export default defineNuxtConfig({
 
+	srcDir: './',
+
 	devtools: { enabled: true },
 
 	vite: {
@@ -16,11 +18,11 @@ export default defineNuxtConfig({
 	},
 
 	modules: [
-		'nuxt-icon',
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
+		'dayjs-nuxt'
 	],
-
+	
 	tailwindcss: {
 		exposeConfig: true,
 		viewer: true,
@@ -33,10 +35,20 @@ export default defineNuxtConfig({
 	},
 
 	css: [
-		'/assets/css/main.css'
+		'bootstrap/dist/css/bootstrap.css',
+		'/assets/css/main.css',
+		'@fortawesome/fontawesome-svg-core/styles.css'
 	],
 
-	srcDir: './',
+	build: {
+		// Para que Vue no tire un warn en los iconos
+        transpile: [
+            '@fortawesome/fontawesome-svg-core',
+            '@fortawesome/free-brands-svg-icons',
+			'@fortawesome/free-regular-svg-icons',
+			'@fortawesome/free-solid-svg-icons'
+        ]
+    },
 
 	// Variables por entorno
 	$production: {
