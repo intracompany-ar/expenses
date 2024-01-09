@@ -1,6 +1,6 @@
+<!-- No usar middleware acá sanctum:auth porque se tilda -->
 <script lang="ts" setup>
-const auth = useAuthStore()
-
+const { user, logout, isAuthenticated } = useSanctumAuth();
 const isOpen = ref(false)
 </script>
 
@@ -13,7 +13,7 @@ const isOpen = ref(false)
 			
 			<div class="tw-flex tw-space-x-2">
 				<span class="tw-text-white tw-hover:text-gray-300 tw-pt-1">
-					{{ auth.user?.name }}
+					{{ user?.name ?? 'No logueado' }}
 				</span>
 
 				<div class="tw-text-white tw-hover:text-gray-300">
@@ -28,7 +28,7 @@ const isOpen = ref(false)
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Usuario</a> -->
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Categorías</a> -->
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mi Balance</a> -->
-							<button class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 tw-hover:bg-gray-100" v-if="auth.isLoggedIn" v-on:click="auth.logout">Cerrar sesión</button>
+							<button class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 tw-hover:bg-gray-100" v-if="isAuthenticated" v-on:click="logout">Cerrar sesión</button>
 						</div>
 					</div>
 				</div>

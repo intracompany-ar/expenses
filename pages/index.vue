@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import { definePageMeta } from '#imports'
-import {useMonthYearStore} from '~/stores/useMonthYearStore'
+import { useMonthYearStore } from '~/stores/useMonthYearStore'
 const storeMonthYear = useMonthYearStore();
 
 definePageMeta({
-    middleware: ['auth'],
+    middleware: ["sanctum:auth"],
     layout: 'default'
 })
 

@@ -1,25 +1,22 @@
 <script setup>
 import { definePageMeta } from '#imports'
+const { login } = useSanctumAuth();
 
 definePageMeta({
-	middleware: ['guest'],
+	// middleware: ["sanctum:auth"],
 	layout: false
 })
 
-const form = ref({
+const userCredentials = ref({
 	// email: 'fulano@neuper.com.ar',
 	name: '',
 	password: '',
-	application_id: 1 // Le tengo que poner un valor nuevo a expenses
+	application_id: 8 // Le tengo que poner un valor nuevo a expenses
 })
 
-const auth = useAuthStore()
-
-async function login() {
-	console.log('login')
-	if (auth.isLoggedIn) { return navigateTo('/') }
-	const { error } = await auth.login(form.value)
-	if (!error.value) { return navigateTo('/') }
+async function loguear() {
+	await login(userCredentials.value);
+	// disableButton()
 }
 
 function disableButton() {
@@ -40,24 +37,42 @@ function disableButton() {
 				<!-- Status -->
 			</div>
 
-			<div class="tw-container tw-mt-4">
-				<div class="tw-flex tw-justify-center">
-					<div class="tw-sm:offset-2 tw-sm:col-span-11 tw-md:offset-4 tw-md:col-span-4">
-						<form @submit.prevent="login" v-on:submit="disableButton">
+			<div class="container mt-4 tw-bg-indigo-300 py-2">
+                <div class="row justify-content-center">
+                    <div class="col-offset-2 col-11 col-md-offset-4 col-md-4">
+						<form @submit.prevent="loguear">
 
-							<input type="text" v-model="form.name" name="name" class="tw-border tw-rounded tw-py-2 tw-px-3 tw-my-2" />
+							<fieldset>
+								
 
-							<br>
+								<div class="form-floating">
+									<input type="text" id="name" class="form-control form-control-lg" placeholder=" " name="name"
+										v-model="userCredentials.name" required autofocus maxlength="25"
+										style="padding-right: 3rem;"/>
+									<label class="form-label text-muted fs-5" for="name">Usuario</label>
+								</div>
 
-							<input type="password" v-model="form.password" name="password" class="tw-border tw-rounded tw-py-2 tw-px-3" />
-							<br>
-							<div class="tw-text-center">
-								<button type="submit" class="tw-bg-blue-500 tw-text-white tw-py-2 tw-px-4 tw-rounded tw-my-2">Login</button>
-							</div>
+								<div class="pt-2">
+									<div class="form-floating">
+										<input type="password" name="password" id="password" required placeholder=" "
+											autocomplete="current-password"
+											v-model="userCredentials.password"
+											data-error="some error"
+											class="form-control form-control-lg"
+										>
+										<label class="form-label text-muted fs-5" for="password">Contraseña</label>
+									</div>
+								</div>
+								
+								<div class="text-center mt-4">
+									<button type="submit" class="btn btn-secondary btn-neuper btn-lg">Login</button>
+								</div>
+							</fieldset>
 						</form>
-					</div>
-				</div>
-			</div>
+                    </div>
+                </div>
+            </div>
+
 		</template>
 	</AuthenticationCard>
 </template>
