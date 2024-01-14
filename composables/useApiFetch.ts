@@ -35,7 +35,7 @@ export function useApiFetch<T>(path: string | (() => string), options: UseFetchO
 		// watch: false, // Sino la reactidiad de vue hace como un eco...
 		...options,
 		headers: {
-		// 	...headers,
+			...headers,
 			...options?.headers,
 		}
 	})

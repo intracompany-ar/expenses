@@ -28,8 +28,9 @@ const isOpen = ref(false)
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Usuario</a> -->
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Categorías</a> -->
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mi Balance</a> -->
+							<!-- v-if="authStore.isAuthenticated" -->
 							<button class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 tw-hover:bg-gray-100"
-								v-if="authStore.isAuthenticated" v-on:click="authStore.logout">Cerrar sesión</button>
+								v-on:click="authStore.logout">Cerrar sesión</button>
 						</div>
 					</div>
 				</div>
