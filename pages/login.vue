@@ -1,12 +1,15 @@
 <script setup>
 import { definePageMeta } from '#imports'
-const { login } = useSanctumAuth();
+
+const authStore = useAuthStore();
+const tokenStore = useTokenStore();
 
 definePageMeta({
-	// middleware: ["sanctum:auth"],
+	middleware: ['login'],
 	layout: false
 })
 
+const errors = ref([])
 const userCredentials = ref({
 	// email: 'fulano@neuper.com.ar',
 	name: '',
@@ -15,8 +18,12 @@ const userCredentials = ref({
 })
 
 async function loguear() {
-	disableButton()
-	await login(userCredentials.value);
+	try {
+		await authStore.login(userCredentials.value)
+	} catch (error) {
+		errors.value = error.data.errors
+	}
+	// disableButton()
 }
 
 function disableButton() {
@@ -33,45 +40,47 @@ function disableButton() {
 		</template>
 
 		<template #content>
-			<div class="tw-mb-4 tw-font-medium tw-text-sm tw-text-green-600">
+			{{ tokenStore.getStatus }}
+			{{ tokenStore.getToken }}
+			{{ authStore.getUser }}
+
+			<div v-if="errors.length > 0" class="tw-mb-4 tw-font-medium tw-text-sm tw-text-green-600">
 				<!-- Status -->
+				{{ errors }}
 			</div>
 
 			<div class="container mt-4 tw-bg-indigo-300 py-2">
-                <div class="row justify-content-center">
-                    <div class="col-offset-2 col-11 col-md-offset-4 col-md-4">
+				<div class="row justify-content-center">
+					<div class="col-offset-2 col-11 col-md-offset-4 col-md-4">
 						<form @submit.prevent="loguear">
 
 							<fieldset>
-								
+
 
 								<div class="form-floating">
-									<input type="text" id="name" class="form-control form-control-lg" placeholder=" " name="name"
-										v-model="userCredentials.name" required autofocus maxlength="25"
-										style="padding-right: 3rem;"/>
+									<input type="text" id="name" class="form-control form-control-lg" placeholder=" "
+										name="name" v-model="userCredentials.name" required autofocus maxlength="25"
+										style="padding-right: 3rem;" />
 									<label class="form-label text-muted fs-5" for="name">Usuario</label>
 								</div>
 
 								<div class="pt-2">
 									<div class="form-floating">
 										<input type="password" name="password" id="password" required placeholder=" "
-											autocomplete="current-password"
-											v-model="userCredentials.password"
-											data-error="some error"
-											class="form-control form-control-lg"
-										>
+											autocomplete="current-password" v-model="userCredentials.password"
+											data-error="some error" class="form-control form-control-lg">
 										<label class="form-label text-muted fs-5" for="password">Contraseña</label>
 									</div>
 								</div>
-								
+
 								<div class="text-center mt-4">
 									<button type="submit" class="btn btn-secondary btn-neuper btn-lg">Login</button>
 								</div>
 							</fieldset>
 						</form>
-                    </div>
-                </div>
-            </div>
+					</div>
+				</div>
+			</div>
 
 		</template>
 	</AuthenticationCard>

@@ -1,6 +1,5 @@
-<!-- No usar middleware acá sanctum:auth porque se tilda -->
 <script lang="ts" setup>
-const { user, logout, isAuthenticated } = useSanctumAuth();
+const authStore = useAuthStore();
 const isOpen = ref(false)
 </script>
 
@@ -8,12 +7,12 @@ const isOpen = ref(false)
 	<nav class="tw-bg-gray-800 p-4">
 		<div class="tw-container tw-mx-auto tw-flex tw-items-center tw-justify-between">
 			<NuxtLink class="tw-text-white tw-text-lg tw-font-bold" to="/">
-				<fa-icon icon="fa-solid fa-dollar"/> IceO Finanzas
+				<fa-icon icon="fa-solid fa-dollar" /> IceO Finanzas
 			</NuxtLink>
-			
+
 			<div class="tw-flex tw-space-x-2">
 				<span class="tw-text-white tw-hover:text-gray-300 tw-pt-1">
-					{{ user?.name ?? 'No logueado' }}
+					{{ authStore.user?.name ?? 'No logueado' }}
 				</span>
 
 				<div class="tw-text-white tw-hover:text-gray-300">
@@ -22,13 +21,15 @@ const isOpen = ref(false)
 							class="tw-inline-flex tw-items-center tw-justify-center tw-w-full tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-white tw-bg-gray-700 tw-border tw-border-transparent tw-rounded-md tw-hover:bg-gray-600 tw-focus:outline-none tw-focus:border-gray-800 tw-focus:ring tw-focus:ring-gray-300 tw-active:bg-gray-800">
 							<fa-icon icon="fa-solid fa-cog" />
 						</button>
-		
-		
-						<div v-show="isOpen" @click.away="isOpen = false" class="tw-absolute tw-right-0 tw-mt-2 tw-w-48 tw-bg-white tw-border tw-border-gray-200 tw-divide-y tw-divide-gray-100 tw-rounded-md tw-shadow-lg">
+
+
+						<div v-show="isOpen" @click.away="isOpen = false"
+							class="tw-absolute tw-right-0 tw-mt-2 tw-w-48 tw-bg-white tw-border tw-border-gray-200 tw-divide-y tw-divide-gray-100 tw-rounded-md tw-shadow-lg">
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Usuario</a> -->
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Categorías</a> -->
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mi Balance</a> -->
-							<button class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 tw-hover:bg-gray-100" v-if="isAuthenticated" v-on:click="logout">Cerrar sesión</button>
+							<button class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 tw-hover:bg-gray-100"
+								v-if="authStore.isAuthenticated" v-on:click="authStore.logout">Cerrar sesión</button>
 						</div>
 					</div>
 				</div>

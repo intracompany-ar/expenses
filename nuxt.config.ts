@@ -18,33 +18,11 @@ export default defineNuxtConfig({
 	},
 
 	modules: [
-		'nuxt-auth-sanctum',
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
-		'dayjs-nuxt'
+		'@pinia-plugin-persistedstate/nuxt',
+		'dayjs-nuxt',
 	],
-
-	sanctum: {
-		baseUrl: process.env.API_URL || 'http://localhost',
-		redirectIfAuthenticated: true,
-		redirect: {
-			onAuthOnly: '/',
-			keepRequestedRoute: true,
-			onLogin: '/',
-			onLogout: '/login',
-			onGuestOnly: '/login',
-		},
-		endpoints: {
-			csrf: '/sanctum/csrf-cookie', // CSRF cookie endpoint
-			login: '/api/login', // Endpoint that accepts user credentials
-			logout: '/api/logout', // Endpoint to destroy the current session
-			user: '/api/user', // Endpoint that return current user information
-		},
-		csrf: {
-			cookie: '',
-			header: ''
-		},
-	},
 
 	tailwindcss: {
 		exposeConfig: true,
