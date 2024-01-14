@@ -1,7 +1,7 @@
 <script setup>
 import $ from 'jquery'
 
-const {data: rows} =  await useApiFetch('/api/journalEntryTemplate/indexIncome');
+const {data: rows} =  await useApiFetch('/journalEntryTemplate/indexIncome');
 
 async function store() {
 	const formData = $('#form-create').serializeArray();

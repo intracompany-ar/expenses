@@ -15,8 +15,8 @@ const userCredentials = ref({
 })
 
 async function loguear() {
+	disableButton()
 	await login(userCredentials.value);
-	// disableButton()
 }
 
 function disableButton() {
