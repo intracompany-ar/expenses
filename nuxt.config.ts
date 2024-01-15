@@ -24,6 +24,7 @@ export default defineNuxtConfig({
 		'dayjs-nuxt',
 	],
 
+
 	tailwindcss: {
 		exposeConfig: true,
 		viewer: true,

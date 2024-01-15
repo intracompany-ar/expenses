@@ -2,7 +2,6 @@
 import AirDatepicker from 'air-datepicker';
 import localeEs from 'air-datepicker/locale/es';
 import 'air-datepicker/air-datepicker.css';
-import {useMonthYearStore} from '~/stores/useMonthYearStore'
 const storeMonthYear = useMonthYearStore();
 
 const emit = defineEmits()

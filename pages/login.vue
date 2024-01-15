@@ -40,10 +40,6 @@ function disableButton() {
 		</template>
 
 		<template #content>
-			{{ tokenStore.getStatus }}
-			{{ tokenStore.getToken }}
-			{{ authStore.getUser }}
-
 			<div v-if="errors.length > 0" class="tw-mb-4 tw-font-medium tw-text-sm tw-text-green-600">
 				<!-- Status -->
 				{{ errors }}

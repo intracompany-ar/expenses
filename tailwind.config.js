@@ -14,8 +14,9 @@ export default {
 			}
 		},
 	},
-	plugins: [],
+	
 	content: [
+
 		`${srcDir}/components/**/*.{vue,js,ts}`,
 		`${srcDir}/layouts/**/*.vue`,
 		`${srcDir}/pages/**/*.vue`,
