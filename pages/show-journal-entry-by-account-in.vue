@@ -1,6 +1,12 @@
 <script setup>
 const storeMonthYear = useMonthYearStore();
 
+definePageMeta({
+    middleware: ['auth'],
+    layout: 'simple'
+})
+
+
 const accounts = ref(null);
 
 defineProps(['inOut'])
@@ -18,7 +24,6 @@ async function getRows() {
 		console.error('Error al obtener datos:', error);
 	}
 }
-
 </script>
 
 
@@ -33,7 +38,9 @@ async function getRows() {
 	<div v-if="accounts">
 		<div v-for="account in accounts" class="row">
 			<div class="col-8">
-				<small class="tw-text-gray-800"><b>{{ account?.account?.name }}</b></small>
+					<NuxtLink :to="'/journal-entry-line/'+storeMonthYear.month+'/'+storeMonthYear.year+'/'+account.account.id">
+						<small class="tw-text-gray-800"><b>{{ account?.account?.name }}</b></small>
+					</NuxtLink>
 			</div>
 			<div class="col-4 text-end">
 				<h5 class="tw-text-green-800 tw-font-bold">$ {{ Math.round(account?.balance * 100 / 100) }}</h5>

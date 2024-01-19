@@ -1,7 +1,4 @@
 <script setup>
-import { ref } from 'vue'
-import { definePageMeta } from '#imports'
-
 const storeMonthYear = useMonthYearStore();
 
 definePageMeta({
