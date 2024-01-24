@@ -2,8 +2,8 @@
 const route = useRoute()
 
 definePageMeta({
-    middleware: ['auth'],
-    layout: 'simple'
+	middleware: ['auth'],
+	layout: 'simple'
 })
 
 
@@ -47,6 +47,7 @@ async function getRows() {
 			<div class="col-6 text-end">
 				${{ Math.round((row.credit - row.debit) * 100) / 100 }}
 			</div>
+			<hr>
 		</div>
 
 		<hr>
@@ -55,7 +56,8 @@ async function getRows() {
 				<b>Total</b>
 			</div>
 			<div class="col-6 text-end">
-				<b>{{ Math.round(journalEntryLines.reduce((acc, row) => acc + (row.credit - row.debit), 0) * 100) / 100 }}</b>
+				<b>{{ Math.round(journalEntryLines.reduce((acc, row) => acc + (row.credit - row.debit), 0) * 100) / 100
+				}}</b>
 			</div>
 		</div>
 	</div>

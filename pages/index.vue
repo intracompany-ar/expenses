@@ -8,7 +8,7 @@ definePageMeta({
 
 const message = ref('')
 
-const {data: balanceAcumulado} = await useApiFetch('/api/journalEntry/balance')
+const { data: balanceAcumulado } = await useApiFetch('/api/journalEntry/balance')
 
 let showCategoryGetRows = null;
 
@@ -45,8 +45,12 @@ function getBalances() {
         <div class="row tw-pt-2">
             <b>Detalle Mensual</b>
             <div class="tw-bg-gray-100 tw-rounded-md p-4 tw-max-h-100 tw-overflow-y-auto">
-                <ShowCategory v-on:expose="setChildMethod" color="tw-bg-green-400 tw-my-2" route-show="/show-journal-entry-by-account-in" in-out="in"  route-create="/create-income" category="Ingresos"/>
-                <ShowCategory v-on:expose="setChildMethod" color="tw-bg-red-400" route-show="/show-journal-entry-by-account-out" in-out="out" route-create="/create-outcome" category="Egresos"/>
+                <ShowCategory v-on:expose="setChildMethod" color="tw-bg-green-400 tw-my-2"
+                    route-show="/journal-entries-by-account/in" route-create="/create-journal-entry/in" category="Ingresos">
+                    <fa-icon icon="fa-solid fa-coins" /></ShowCategory>
+                <ShowCategory v-on:expose="setChildMethod" color="tw-bg-red-400"
+                    route-show="/journal-entries-by-account/out" route-create="/create-journal-entry/out"
+                    category="Egresos"><fa-icon icon="fa-solid fa-hand-holding-dollar" /></ShowCategory>
                 <!-- <ShowCategory color="bg-yellow-500" category="Ahorros"></ShowCategory>
                 <ShowCategory color="bg-blue-500" category="Tarjetas"></ShowCategory> -->
                 <!-- Resumen Mensual -->

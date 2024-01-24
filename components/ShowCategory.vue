@@ -27,8 +27,9 @@ async function getRows() {
 <template>
     <div class="container-fluid">
         <div class="row">
-            <NuxtLink :to="props.routeShow" class="col-8 mx-2 tw-rounded-lg" :class="props.color ?? 'tw-bg-green-300'">
-                <h3>{{ props.category }}</h3>
+            <NuxtLink :to="props.routeShow" class="col-8 tw-mx-2 tw-py-2 tw-rounded-lg" :class="props.color ?? 'tw-bg-green-300'">
+                
+                <h3><slot></slot> {{ props.category }}</h3>
                 <h1>$ {{ amount ?? 0 }}</h1>
                 {{ props.icon }}
             </NuxtLink>

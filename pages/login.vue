@@ -2,7 +2,6 @@
 import { definePageMeta } from '#imports'
 
 const authStore = useAuthStore();
-const tokenStore = useTokenStore();
 
 definePageMeta({
 	middleware: ['login'],
@@ -21,7 +20,7 @@ async function loguear() {
 	try {
 		await authStore.login(userCredentials.value)
 	} catch (error) {
-		errors.value = error.data.errors
+		errors.value = error.value?.data?.errors
 	}
 	// disableButton()
 }
@@ -40,11 +39,6 @@ function disableButton() {
 		</template>
 
 		<template #content>
-			<div v-if="errors.length > 0" class="tw-mb-4 tw-font-medium tw-text-sm tw-text-green-600">
-				<!-- Status -->
-				{{ errors }}
-			</div>
-
 			<div class="container mt-4 tw-bg-indigo-300 py-2">
 				<div class="row justify-content-center">
 					<div class="col-offset-2 col-11 col-md-offset-4 col-md-4">
@@ -67,6 +61,9 @@ function disableButton() {
 											data-error="some error" class="form-control form-control-lg">
 										<label class="form-label text-muted fs-5" for="password">Contraseña</label>
 									</div>
+								</div>
+								<div v-if="errors" class="tw-mb-4 tw-font-medium tw-text-sm tw-text-red-600">
+									{{ errors.name ? (errors.name.length > 0 ? errors.name[0] : '') : '' }}
 								</div>
 
 								<div class="text-center mt-4">

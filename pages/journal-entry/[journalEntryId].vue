@@ -15,7 +15,7 @@ onMounted(() => {
 
 async function getRows() {
 	try {
-		const url = `/api/journalEntry/${route.params.journalEntryId}`;
+		const url = `/api/journalEntry/show/${route.params.journalEntryId}`;
 		const { data } = await useApiFetch(url);
 		journalEntry.value = data.value;
 	} catch (error) {

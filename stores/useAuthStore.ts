@@ -27,10 +27,13 @@ export const useAuthStore = defineStore('auth', {
 		async login(formData: object) {
 			try {
 				const token = useTokenStore()
-				const { data } = await useApiFetch('/api/login', {
+				const { data, error } = await useApiFetch('/api/login', {
 					method: 'POST',
 					body: { ...formData }
 				});
+				if (error.value) {
+					throw error;
+				}
 				token.setToken(data.value.data.token);
 				this.user = data.value.data.user
 				return navigateTo('/')
