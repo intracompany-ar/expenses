@@ -1,31 +1,27 @@
 <script setup>
-import { ref, watch } from 'vue';
-
 const props = defineProps(['message'])
 
 const mensaje = ref('');
 const mensajeVisible = ref(false);
 
-watch(() => props.message, async () => {
+mensaje.value = props.message;
 
-    mensaje.value = props.message;
-    console.log('asdfasdf')
-    if (mensaje.value) {
-        // Mostrar el mensaje
-        mensajeVisible.value = true;
+if (mensaje.value) {
+    abrirMensaje();
+}
 
-        // Iniciar temporizador para cerrar el mensaje después de 30 segundos
-        setTimeout(() => {
-            cerrarMensaje();
-        }, 30000);
-    }
-});
+function abrirMensaje() {
+    // Mostrar el mensaje
+    mensajeVisible.value = true;
+
+    // Iniciar temporizador para cerrar el mensaje después de 30 segundos
+    setTimeout(() => {
+        cerrarMensaje();
+    }, 10000);
+}
 
 function cerrarMensaje() {
-    // Cerrar el mensaje
-    console.log('asdf')
     mensajeVisible.value = false;
-    // Limpiar el mensaje después de cerrarlo
     mensaje.value = '';
 }
 </script>

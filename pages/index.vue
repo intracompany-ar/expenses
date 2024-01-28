@@ -1,12 +1,10 @@
 <script setup>
 // @ts-nocheck
 // import { useStoreAdvices } from 'commons_front'//No usar, falla importación, tengo que desarrollarlo como un modulo
-
-const storeMonthYear = useMonthYearStore();
-
 // const storeAdvices = useStoreAdvices()
 // storeAdvices.success('hola')
 
+const storeMonthYear = useMonthYearStore();
 const route = useRoute()
 
 definePageMeta({
