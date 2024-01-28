@@ -18,6 +18,7 @@ export default defineNuxtConfig({
 	},
 
 	modules: [
+		// 'commons_front',
 		'@nuxtjs/tailwindcss',
 		'@pinia/nuxt',
 		'@pinia-plugin-persistedstate/nuxt',
@@ -44,7 +45,7 @@ export default defineNuxtConfig({
 	],
 
 	build: {
-		// Para que Vue no tire un warn en los iconos
+		// Para que Vue no tire un warn en los iconos, pero no funciona, lo hace igual
 		transpile: [
 			'@fortawesome/fontawesome-svg-core',
 			'@fortawesome/free-brands-svg-icons',
@@ -76,4 +77,14 @@ export default defineNuxtConfig({
 			apiBase: process.env.API_URL,
 		}
 	}
+	// ,
+
+	// imports: {
+	// 	presets: [
+	// 		{
+	// 			from: 'commons_front',
+	// 			imports: ['useStoreAdvices']
+	// 		}
+	// 	]
+	// }
 })

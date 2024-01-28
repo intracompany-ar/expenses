@@ -1,5 +1,6 @@
 <script setup>
 import $ from 'jquery'
+
 const route = useRoute()
 
 onMounted(() => {
@@ -30,7 +31,7 @@ async function store() {
 		if (error.value) {
 			throw error;
 		}
-		return navigateTo('/')
+		return navigateTo({ path: '/', query: { message: 'Asiento insertado con éxito!' } })
 	} catch (error) {
 		errors.value = error.value?.data?.errors
 	}
