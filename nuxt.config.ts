@@ -19,13 +19,12 @@ export default defineNuxtConfig({
 
 	modules: [
 		// 'commons_front',
-		'@nuxtjs/tailwindcss',
+		'@nuxt/ui',
 		'@pinia/nuxt',
 		'@pinia-plugin-persistedstate/nuxt',
 		'dayjs-nuxt',
-		'@vite-pwa/nuxt'
+		'@vite-pwa/nuxt',
 	],
-
 
 	tailwindcss: {
 		exposeConfig: true,
@@ -39,19 +38,10 @@ export default defineNuxtConfig({
 	},
 
 	css: [
-		'bootstrap/dist/css/bootstrap.css',
 		'/assets/css/main.css',
-		'@fortawesome/fontawesome-svg-core/styles.css'
 	],
 
 	build: {
-		// Para que Vue no tire un warn en los iconos, pero no funciona, lo hace igual
-		transpile: [
-			'@fortawesome/fontawesome-svg-core',
-			'@fortawesome/free-brands-svg-icons',
-			'@fortawesome/free-regular-svg-icons',
-			'@fortawesome/free-solid-svg-icons'
-		]
 	},
 
 	// Variables por entorno
@@ -76,7 +66,7 @@ export default defineNuxtConfig({
 			appBase: process.env.APP_URL,
 			apiBase: process.env.API_URL,
 		}
-	}
+	},
 	// ,
 
 	// imports: {
@@ -87,4 +77,10 @@ export default defineNuxtConfig({
 	// 		}
 	// 	]
 	// }
+
+	pwa: {
+		client: {
+			installPrompt: true
+		}
+	}
 })

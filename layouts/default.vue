@@ -4,32 +4,32 @@ const isOpen = ref(false)
 </script>
 
 <template>
-	<nav class="tw-bg-gray-800 p-4">
-		<div class="tw-container tw-mx-auto tw-flex tw-items-center tw-justify-between">
-			<NuxtLink class="tw-text-white tw-text-lg tw-font-bold" to="/">
-				<fa-icon icon="fa-solid fa-dollar" /> IceO Finanzas
+	<nav class="bg-gray-800 p-4">
+		<div class="container mx-auto flex items-center justify-between">
+			<NuxtLink class="text-white text-lg font-bold" to="/">
+				<UIcon name="i-heroicons-currency-dollar" /> IceO Finanzas
 			</NuxtLink>
 
-			<div class="tw-flex tw-space-x-2">
-				<span class="tw-text-white tw-hover:text-gray-300 tw-pt-1">
+			<div class="flex space-x-2">
+				<span class="text-white hover:text-gray-300 pt-1">
 					{{ authStore.user?.name ?? 'No logueado' }}
 				</span>
 
-				<div class="tw-text-white tw-hover:text-gray-300">
-					<div class="tw-relative tw-inline-block tw-text-left">
+				<div class="text-white hover:text-gray-300">
+					<div class="relative inline-block text-left">
 						<button type="button" @click="isOpen = !isOpen"
-							class="tw-inline-flex tw-items-center tw-justify-center tw-w-full tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-text-white tw-bg-gray-700 tw-border tw-border-transparent tw-rounded-md tw-hover:bg-gray-600 tw-focus:outline-none tw-focus:border-gray-800 tw-focus:ring tw-focus:ring-gray-300 tw-active:bg-gray-800">
-							<fa-icon icon="fa-solid fa-cog" />
+							class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-gray-700 border border-transparent rounded-md hover:bg-gray-600 focus:outline-none focus:border-gray-800 focus:ring focus:ring-gray-300 active:bg-gray-800">
+							<UIcon name="i-heroicons-cog-6-tooth" />
 						</button>
 
 
 						<div v-show="isOpen" @click.away="isOpen = false"
-							class="tw-absolute tw-right-0 tw-mt-2 tw-w-48 tw-bg-white tw-border tw-border-gray-200 tw-divide-y tw-divide-gray-100 tw-rounded-md tw-shadow-lg">
+							class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Usuario</a> -->
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Categorías</a> -->
 							<!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mi Balance</a> -->
 							<!-- v-if="authStore.isAuthenticated" -->
-							<button class="tw-block tw-px-4 tw-py-2 tw-text-sm tw-text-gray-700 tw-hover:bg-gray-100"
+							<button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
 								v-on:click="authStore.logout">Cerrar sesión</button>
 						</div>
 					</div>
@@ -42,4 +42,3 @@ const isOpen = ref(false)
 </template>
 
 <style scoped></style>
-

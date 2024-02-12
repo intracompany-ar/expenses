@@ -25,19 +25,19 @@ async function getRows() {
 </script>
 
 <template>
-    <div class="container-fluid">
-        <div class="row">
-            <NuxtLink :to="props.routeShow" class="col-8 tw-mx-2 tw-py-2 tw-rounded-lg" :class="props.color ?? 'tw-bg-green-300'">
-                
-                <h3><slot></slot> {{ props.category }}</h3>
-                <h1>$ {{ amount ?? 0 }}</h1>
-                {{ props.icon }}
-            </NuxtLink>
+    <div class="container mx-auto grid grid-cols-4 gap-4">
+        <NuxtLink :to="props.routeShow" class="col-span-3 py-2 rounded-lg" :class="props.color ?? 'bg-green-300'">
 
-            <NuxtLink :to="props.routeCreate" class="col-2 mx-2 tw-rounded-lg tw-text-center tw-pt-7 tw-text-lg"
-                :class="props.color ?? 'tw-bg-green-500'">
-                <fa-icon icon="fa-solid fa-plus" />
-            </NuxtLink>
-        </div>
+            <h3 class="text-xl font-bold">
+                <slot></slot> {{ props.category }}
+            </h3>
+            <h1>$ {{ amount ?? 0 }}</h1>
+            {{ props.icon }}
+        </NuxtLink>
+
+        <NuxtLink :to="props.routeCreate" class="col-span-1 rounded-lg text-center pt-7 text-lg"
+            :class="props.color ?? 'bg-green-500'">
+            <UIcon name="i-heroicons-plus-circle-16-solid"/>
+        </NuxtLink>
     </div>
 </template>

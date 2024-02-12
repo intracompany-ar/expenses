@@ -29,9 +29,9 @@ async function getRows() {
 <template>
 	<div class="container">
 
-		
 
-		<div class="row tw-bg-blue-200">
+
+		<div class="row bg-blue-200">
 			<div class="col-12 text-center">
 				<h1>${{ journalEntry?.journal_entry_lines?.reduce((total, line) => total + parseFloat(line.debit), 0) }}
 				</h1>

@@ -17,4 +17,11 @@
         "wordWrap": true
     },
     "editor.wordWrap": "on",
+    // nuxt/ui:
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "editor.quickSuggestions": {
+        "strings": true
+    }
 }

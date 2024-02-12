@@ -33,8 +33,8 @@ async function getRows() {
 <template>
     <MonthYearSelect v-on:selected="getRows()" />
 
-    <div class="tw-p-4 tw-mb-3 tw-text-white-100"
-        :class="{ 'tw-bg-red-300': route.params.inOut == 'out', 'tw-bg-green-300': route.params.inOut == 'in' }">
+    <div class="p-4 mb-3 text-white-100"
+        :class="{ 'bg-red-300': route.params.inOut == 'out', 'bg-green-300': route.params.inOut == 'in' }">
         <h4>Total de {{ route.params.inOut == 'out' ? 'Gastos' : 'Ingresos' }}</h4>
         <!-- <h1>$ {{ balance }}</h1> -->
     </div>
@@ -44,11 +44,11 @@ async function getRows() {
             <div class="col-8">
                 <NuxtLink
                     :to="'/journal-entry-line/' + storeMonthYear.month + '/' + storeMonthYear.year + '/' + account.account.id">
-                    <small class="tw-text-gray-800"><b>{{ account?.account?.name }}</b></small>
+                    <small class="text-gray-800"><b>{{ account?.account?.name }}</b></small>
                 </NuxtLink>
             </div>
             <div class="col-4 text-end">
-                <h5 class="tw-text-green-800 tw-font-bold">$ {{ Math.round(account?.balance * 100 / 100) }}</h5>
+                <h5 class="text-green-800 font-bold">$ {{ Math.round(account?.balance * 100 / 100) }}</h5>
             </div>
             <hr>
         </div>
@@ -62,12 +62,12 @@ async function getRows() {
 
     <!-- <div v-for="journalEntryLine in rows"  class="row">
 		<div class="col-8" v-if="journalEntryLine.journal_entry">
-			<small class="tw-text-gray-800"><b>{{ journalEntryLine.journal_entry.observation }}</b></small>
+			<small class="text-gray-800"><b>{{ journalEntryLine.journal_entry.observation }}</b></small>
 			<br>
 			{{ dayjs(journalEntryLine.journal_entry.posting_date).format('DD/MM/YYYY') }}
 		</div>
 		<div class="col-4 text-end">
-			<h5 class="tw-text-green-800 tw-font-bold">$ {{ Math.round(journalEntryLine.credit * 100/ 100) }}</h5>
+			<h5 class="text-green-800 font-bold">$ {{ Math.round(journalEntryLine.credit * 100/ 100) }}</h5>
 			
 		</div>
 		<hr>

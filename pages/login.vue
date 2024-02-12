@@ -39,35 +39,32 @@ function disableButton() {
 		</template>
 
 		<template #content>
-			<div class="container mt-4 tw-bg-indigo-300 py-2">
+			<div class="container mt-4 bg-indigo-300 py-2">
 				<div class="row justify-content-center">
 					<div class="col-offset-2 col-11 col-md-offset-4 col-md-4">
 						<form @submit.prevent="loguear">
 
-							<fieldset>
-
-
-								<div class="form-floating">
-									<input type="text" id="name" class="form-control form-control-lg" placeholder=" "
-										name="name" v-model="userCredentials.name" required autofocus maxlength="25"
-										style="padding-right: 3rem;" />
-									<label class="form-label text-muted fs-5" for="name">Usuario</label>
-								</div>
+							<fieldset class="p-2">
+								<UILabel for="name">Usuario</UILabel>
+								<UInput id="name" placeholder=" " name="name" v-model="userCredentials.name" required
+									autofocus maxlength="25"
+									class="w-full p-4 text-lg rounded focus:outline-none focus:border-blue-500">
+								</UInput>
 
 								<div class="pt-2">
-									<div class="form-floating">
-										<input type="password" name="password" id="password" required placeholder=" "
-											autocomplete="current-password" v-model="userCredentials.password"
-											data-error="some error" class="form-control form-control-lg">
-										<label class="form-label text-muted fs-5" for="password">Contraseña</label>
-									</div>
+									<UILabel for="password">Contraseña</UILabel>
+									<UInput type="password" id="password" placeholder=" " name="password"
+										v-model="userCredentials.password" required autofocus
+										class="w-full p-4 text-lg rounded focus:outline-none focus:border-blue-500">
+									</UInput>
 								</div>
-								<div v-if="errors" class="tw-mb-4 tw-font-medium tw-text-sm tw-text-red-600">
+
+								<div v-if="errors" class="mb-4 font-medium text-sm text-red-600">
 									{{ errors.name ? (errors.name.length > 0 ? errors.name[0] : '') : '' }}
 								</div>
 
 								<div class="text-center mt-4">
-									<button type="submit" class="btn btn-secondary btn-neuper btn-lg">Login</button>
+									<UButton color="blue" type="submit" class="p-3" :ui="{ rounded: 'rounded-full' }">ENTRAR</UButton>
 								</div>
 							</fieldset>
 						</form>

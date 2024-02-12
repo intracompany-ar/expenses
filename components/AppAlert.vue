@@ -27,10 +27,9 @@ function cerrarMensaje() {
 </script>
 
 <template>
-    <div v-if="mensajeVisible"
-        class="tw-fixed tw-top-15 tw-right-4 tw-bg-green-500 tw-text-white tw-p-3 tw-rounded tw-shadow">
-        <button v-on:click="cerrarMensaje" class="tw-float-right tw-text-white tw-font-bold"><fa-icon
-                icon="fa-solid fa-xmark"></fa-icon></button>
+    <div v-if="mensajeVisible" class="fixed top-15 right-4 bg-green-500 text-white p-3 rounded shadow">
+        <button v-on:click="cerrarMensaje" class="float-right text-white font-bold">
+            X</button>
         <div>
             {{ mensaje }}
         </div>
