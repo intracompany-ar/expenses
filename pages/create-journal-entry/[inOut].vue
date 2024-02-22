@@ -72,6 +72,7 @@ async function store() {
 				<div class="my-2 flex items-center justify-center">
 					<UFormGroup label="Fecha Contable">
 						<UPopover :popper="{ placement: 'bottom-start' }">
+							<input type="hidden" name="posting_date" :value="format(date, 'yyyy-MM-dd')" />
 							<UButton icon="i-heroicons-calendar-days-20-solid" :label="format(date, 'd MMM, yyy')" />
 							<template #panel="{ close }">
 								<DatePicker v-model="date" @close="close" name="posting_date" />

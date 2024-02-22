@@ -8,6 +8,10 @@ const props = defineProps({
     modelValue: {
         type: [Date, Object] as PropType<DatePickerDate | DatePickerRangeObject | null>,
         default: null
+    },
+    name: {
+        type: String,
+        default: 'date'
     }
 })
 
@@ -31,9 +35,7 @@ const attrs = {
 </script>
 
 <template>
-    aaaa
-    <input type="hidden" name="date" :value="format(date, 'yyyy-MM-dd')" />
-    asdfasdf
+    <input type="hidden" :name="props.name" :value="format(date, 'yyyy-MM-dd')" />
     <VCalendarDatePicker v-if="date && (typeof date === 'object') && !(date instanceof Date)" v-model.range="date"
         :columns="2" v-bind="{ ...attrs, ...$attrs }" />
 
