@@ -1,5 +1,9 @@
 export default defineNuxtConfig({
 
+	colorMode: {
+		preference: 'light'
+	},
+	
 	srcDir: './',
 
 	devtools: { enabled: false },

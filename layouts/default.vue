@@ -1,6 +1,17 @@
 <script lang="ts" setup>
 const authStore = useAuthStore();
+const colorMode = useColorMode()
+
 const isOpen = ref(false)
+
+const isDark = computed({
+	get() {
+		return colorMode.value === 'dark'
+	},
+	set() {
+		colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+	}
+})
 </script>
 
 <template>
@@ -31,6 +42,13 @@ const isOpen = ref(false)
 							<!-- v-if="authStore.isAuthenticated" -->
 							<button class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
 								v-on:click="authStore.logout">Cerrar sesión</button>
+							<ClientOnly>
+								<UButton :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
+									color="gray" variant="ghost" aria-label="Theme" @click="isDark = !isDark" />
+								<template #fallback>
+									<div class="w-8 h-8" />
+								</template>
+							</ClientOnly>
 						</div>
 					</div>
 				</div>

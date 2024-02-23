@@ -6,6 +6,7 @@ const srcDir = '.'
 export default {
 
 	// prefix: 'tw-',// no funciona con nuxt/ui, tengo que dejar bootstrap, pasar todo a tailwind https://github.com/nuxt/ui/issues/220 <- intentaron, pero no le van a dar prioridad los autores
+	darkMode: ['selector', '[data-mode="dark"]'],
 
 	theme: {
 		extend: {
