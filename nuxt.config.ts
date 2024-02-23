@@ -24,17 +24,18 @@ export default defineNuxtConfig({
 		'@pinia-plugin-persistedstate/nuxt',
 		'dayjs-nuxt',
 		'@vite-pwa/nuxt',
+		'@nuxtjs/tailwindcss'
 	],
 
 	tailwindcss: {
-		exposeConfig: true,
 		viewer: true,
 		
-		cssPath: '~/assets/css/tailwind.css',
+		cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
 		configPath: '~/tailwind.config.js',
-		exposeLevel: 2,
-		config: {},
-		injectPosition: 'first',
+		exposeConfig: {
+			level: 2
+		},
+		config: {}
 	},
 
 	css: [
@@ -46,7 +47,7 @@ export default defineNuxtConfig({
 
 	// Variables por entorno
 	$production: {
-		appId: 8
+		// appId: 8
 	//   routeRules: {
 	// '/**': { isr: true }
 	//   }
