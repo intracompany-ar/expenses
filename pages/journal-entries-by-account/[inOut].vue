@@ -40,18 +40,21 @@ async function getRows() {
     </div>
 
     <div v-if="accounts">
-        <div v-for="account in accounts" class="row">
-            <div class="col-8">
-                <NuxtLink
-                    :to="'/journal-entry-line/' + storeMonthYear.month + '/' + storeMonthYear.year + '/' + account.account.id">
-                    <small class="text-gray-800"><b>{{ account?.account?.name }}</b></small>
-                </NuxtLink>
+        <div v-for="account in accounts" class="p-2">
+            <div class="flex">
+                <div class="flex-1">
+                    <NuxtLink
+                        :to="'/journal-entry-line/' + storeMonthYear.month + '/' + storeMonthYear.year + '/' + account.account.id">
+                        <small class="text-gray-800 font-bold">{{ account?.account?.name }}</small>
+                    </NuxtLink>
+                </div>
+                <div class="flex-none text-right">
+                    <h5 class="text-green-800 font-bold">$ {{ Math.round(account?.balance * 100 / 100) }}</h5>
+                </div>
             </div>
-            <div class="col-4 text-end">
-                <h5 class="text-green-800 font-bold">$ {{ Math.round(account?.balance * 100 / 100) }}</h5>
-            </div>
-            <hr>
+            <hr class="w-full mt-2">
         </div>
+
         <div v-if="errors" class="alert alert-danger" role="alert">
             <ul>
                 <li v-for="error in errors">{{ error[0] }}</li>
