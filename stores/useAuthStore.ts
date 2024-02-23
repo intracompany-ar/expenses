@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('auth', {
 				}
 				token.setToken(data.value.data.token);
 				this.user = data.value.data.user
-				return navigateTo('/')
+				navigateTo('/')
 			} catch (error) {
 				throw error;
 			};
@@ -49,7 +49,7 @@ export const useAuthStore = defineStore('auth', {
 				token.removeToken();
 				this.$reset()
 				console.log(response)
-				return navigateTo('/login')
+				navigateTo('/login')
 			} catch (error) {
 				throw error;
 			};
