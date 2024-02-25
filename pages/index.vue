@@ -12,12 +12,18 @@ definePageMeta({
 })
 
 // // If you want to use it in setup, import from the nuxtApp.
-// const { $pwa } = useNuxtApp()
+const { $pwa } = useNuxtApp()
 
 // onMounted(() => {
 //     // if ($pwa.offlineReady) toast.success('App ready to work offline')
 // })
 
+
+function installPwa()
+{
+    console.log($pwa)
+    $pwa.install()
+}
 
 const message = ref(route.query.message ?? '')
 
@@ -37,24 +43,6 @@ function getBalances() {
 
 <template>
     <!-- SIN USO POR AHORA <SelectPresupuesto/> -->
-    <!-- You can use $pwa directly in templates! -->
-    <!-- <div v-show="$pwa.needRefresh">
-        <span>
-            New content available, click on reload button to update.
-        </span>
-
-        <button @click="$pwa.updateServiceWorker()">
-            Reload
-        </button>
-    </div> -->
-
-    <!-- <div v-if="!$pwa?.isPWAInstalled" class="col-4 col-md-12 col-md mb-2 d-grid gap-2"> -->
-    <!-- <a class="text-start btn btn-warning" href="" v-on:click.prevent="installPwa"> -->
-    <!-- <UIcon name="i-heroicons-solid-link" />  -->
-    <!-- Instalar APP/PWA -->
-    <!-- </a> -->
-    <!-- </div> -->
-
     <AppAlert v-if="message" :message="message" />
     <MonthYearSelect v-on:selected="getBalances()" />
 
@@ -86,5 +74,33 @@ function getBalances() {
                 <!-- <CircularChart /> -->
             </div>
         </div>
+    </div>
+
+    
+    <div v-if="$pwa">
+        <div v-if="$pwa.isPWAInstalled">
+            PWA Instalado
+        </div>
+        <div v-else>
+            <div v-show="$pwa.needRefresh">
+                <span>
+                    New content available, click on reload button to update.
+                </span>
+        
+                <button @click="$pwa.updateServiceWorker()">
+                    Reload
+                </button>
+            </div>
+    
+            <div class="m-2 mt-4">
+                <a class="p-2 rounded-md font-bold border-pink bg-blue-500" href="" v-on:click.prevent="installPwa">
+                    <UIcon name="i-heroicons-solid-link" /> 
+                    Instalar APP/PWA
+                </a>
+            </div>
+        </div>
+    </div>
+    <div v-else>
+        $pwa no disponible
     </div>
 </template>

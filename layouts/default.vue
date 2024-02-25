@@ -15,6 +15,14 @@ const isDark = computed({
 </script>
 
 <template>
+	<NuxtPwaManifest />
+	<NuxtLoadingIndicator />
+	<NuxtErrorBoundary>
+		<!-- ... -->
+		<template #error="{ error }">
+			<p>An error occurred: {{ error }}</p>
+		</template>
+	</NuxtErrorBoundary>
 	<nav class="bg-gray-800 p-4">
 		<div class="container mx-auto flex items-center justify-between">
 			<NuxtLink class="text-white text-lg font-bold" to="/">

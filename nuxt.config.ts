@@ -32,18 +32,18 @@ export default defineNuxtConfig({
 	],
 
 	tailwindcss: {
-		viewer: true,
-		
-		cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
-		configPath: '~/tailwind.config.js',
-		exposeConfig: {
-			level: 2
-		},
-		config: {}
+									viewer: true,
+									
+									cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
+									configPath: '~/tailwind.config.js',
+									exposeConfig: {
+																	level: 2
+									},
+									config: {}
 	},
 
 	css: [
-		'/assets/css/main.css',
+									'/assets/css/main.css',
 	],
 
 	build: {
@@ -51,7 +51,7 @@ export default defineNuxtConfig({
 
 	// Variables por entorno
 	$production: {
-		// appId: 8
+									// appId: 8
 	//   routeRules: {
 	// '/**': { isr: true }
 	//   }
@@ -64,13 +64,13 @@ export default defineNuxtConfig({
 	//  Variables public se mestra, las demás quedan en backend
 	
 	runtimeConfig: {
-		// The private keys which are only available server-side
-		//   apiSecret: '123',
-		// Keys within public are also exposed client-side
-		public: {
-			appBase: process.env.APP_URL,
-			apiBase: process.env.API_URL,
-		}
+									// The private keys which are only available server-side
+									//   apiSecret: '123',
+									// Keys within public are also exposed client-side
+									public: {
+																	appBase: process.env.APP_URL,
+																	apiBase: process.env.API_URL,
+									}
 	},
 	// ,
 
