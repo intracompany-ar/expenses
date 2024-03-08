@@ -32,26 +32,33 @@ export default defineNuxtConfig({
 	],
 
 	tailwindcss: {
-									viewer: true,
-									
-									cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
-									configPath: '~/tailwind.config.js',
-									exposeConfig: {
-																	level: 2
-									},
-									config: {}
+		viewer: true,
+		
+		cssPath: ["~/assets/css/tailwind.css", { injectPosition: "first" }],
+		configPath: '~/tailwind.config.js',
+		exposeConfig: {
+		 	level: 2
+		},
+		config: {}
 	},
 
 	css: [
-									'/assets/css/main.css',
+		'/assets/css/main.css',
 	],
 
 	build: {
 	},
 
+	app: {
+		head: {
+			charset: 'utf-8',
+			viewport: 'width=device-width, initial-scale=1, maximum-scale=5'
+		}
+	},
+
 	// Variables por entorno
 	$production: {
-									// appId: 8
+	// appId: 8
 	//   routeRules: {
 	// '/**': { isr: true }
 	//   }
