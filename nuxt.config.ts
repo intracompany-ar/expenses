@@ -91,9 +91,16 @@ export default defineNuxtConfig({
 	// }
 
 	pwa: {
-		manifest: false,// Para que tome desde el archivo manifest.webmanifest/manifest.json
+		manifest: false, // Para que tome desde el archivo manifest.webmanifest ó manifest.json, manifest.json intenté pero tira error, uso webmanifest
+		workbox: {
+			navigateFallback: "/"
+		},
 		client: {
 			installPrompt: true
+		},
+		devOptions: {
+			enabled: true,
+			type: 'module'
 		}
 	}
 })

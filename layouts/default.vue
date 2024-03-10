@@ -16,7 +16,6 @@ const isDark = computed({
 
 <template>
 	<NuxtPwaManifest />
-	
 	<NuxtLoadingIndicator />
 	<NuxtErrorBoundary>
 		<!-- ... -->

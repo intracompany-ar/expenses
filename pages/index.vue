@@ -11,13 +11,11 @@ definePageMeta({
     layout: 'default'
 })
 
-// // If you want to use it in setup, import from the nuxtApp.
 const { $pwa } = useNuxtApp()
 
 // onMounted(() => {
 //     // if ($pwa.offlineReady) toast.success('App ready to work offline')
 // })
-
 
 function installPwa()
 {
@@ -76,31 +74,24 @@ function getBalances() {
         </div>
     </div>
 
-    
-    <div v-if="$pwa">
-        <div v-if="$pwa.isPWAInstalled">
-            PWA Instalado
-        </div>
-        <div v-else>
-            <div v-show="$pwa.needRefresh">
-                <span>
-                    New content available, click on reload button to update.
-                </span>
-        
-                <button @click="$pwa.updateServiceWorker()">
-                    Reload
-                </button>
-            </div>
-    
-            <div class="m-2 mt-4">
-                <a class="p-2 rounded-md font-bold border-pink bg-blue-500" href="" v-on:click.prevent="installPwa">
-                    <UIcon name="i-heroicons-solid-link" /> 
-                    Instalar APP/PWA
-                </a>
-            </div>
+    <div v-if="$pwa?.isPWAInstalled">
+        PWA Instalado
+
+        <div v-if="$pwa.needRefresh">
+            <span>
+                Hay nuevo contenido disponible, haga click en recargar para actualizar.
+            </span>
+            <button @click="$pwa.updateServiceWorker()">
+                Recargar
+            </button>
         </div>
     </div>
     <div v-else>
-        $pwa no disponible
+        <div class="m-2 mt-4">
+            <a class="p-2 rounded-md font-bold border-pink bg-blue-500" href="" v-on:click.prevent="installPwa">
+                <UIcon name="i-heroicons-solid-link" /> 
+                Instalar APP/PWA
+            </a>
+        </div>
     </div>
 </template>

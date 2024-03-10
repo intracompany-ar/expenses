@@ -2,7 +2,6 @@
     "name": "IceO App",
     "short_name": "IceO",
     "display_override": [
-        "window-control-overlay",
         "minimal-ui"
     ],
     "display": "standalone",
@@ -10,8 +9,7 @@
     "background_color": "#114c5f",
     "scope": "/",
     "id": "/",
-    "start_url": "/",
-    "prompt_message": "Añadir a pantalla de inicio para un acceso más rápido",
+    "start_url": "http://localhost:3000/",
     "description": "Aplicación para llevar registro de ingresos y egeresos de tu vida cotidianda de forma simplificada. Un buen control de tu contabilidad es la clave del éxito financiero.",
     "icons": [
         {
@@ -45,14 +43,14 @@
             "url": "https://iceo.ar"
         }
     ],
-    "orientation": "vertical",
+    "orientation": "portrait",
     "screenshots": [
         {
             "src": "/img/screenshot_home.png",
             "type": "image/png",
             "sizes": "356x640",
             "form_factor": "narrow",
-            "label": "Home screen"
+            "label": "Home screen Mobile"
         },
         {
             "src": "/img/screenshot_home_wide.png",
