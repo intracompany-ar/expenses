@@ -9,7 +9,7 @@
     "background_color": "#114c5f",
     "scope": "/",
     "id": "/",
-    "start_url": "http://localhost:3000/",
+    "start_url": "https://expenses.iceo.ar/",
     "description": "Aplicación para llevar registro de ingresos y egeresos de tu vida cotidianda de forma simplificada. Un buen control de tu contabilidad es la clave del éxito financiero.",
     "icons": [
         {
