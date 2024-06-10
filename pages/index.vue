@@ -73,7 +73,6 @@ function getBalances() {
             </div>
         </div>
     </div>
-
     <div v-if="$pwa?.isPWAInstalled">
         PWA Instalado
 
