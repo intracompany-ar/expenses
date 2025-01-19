@@ -10,29 +10,27 @@
 		"postinstall": "nuxt prepare"
 	},
 	"devDependencies": {
+		"@fortawesome/fontawesome-free": "^6.7.2",
 		"@nuxt/devtools": "^1.0.6",
-		"@nuxtjs/tailwindcss": "^6.11.4",
 		"@pinia-plugin-persistedstate/nuxt": "^1.2.0",
 		"@vite-pwa/nuxt": "^0.4.0",
 		"dayjs-nuxt": "^2.1.9",
 		"nuxt": "^3.9",
+		"vite-plugin-vuetify": "^2.0.4",
 		"vue": "^3.4.3",
-		"vue-router": "^4.2.5"
+		"vue-router": "^4.2.5",
+		"vuetify": "^3.7.6"
 	},
 	"dependencies": {
-		"@nuxt/devtools-kit": "^1.0.6",
-		"@nuxt/image": "^1.4.0",
-		"@nuxt/ui": "^2.13.0",
+		"@date-io/date-fns": "^3.2.0",
+		"@intracompany/commons_front": "^1.0",
 		"@nuxt/vite-builder": "^3.8.2",
 		"@pinia/nuxt": "^0.5.1",
 		"@popperjs/core": "^2.11.8",
-		"air-datepicker": "^3.4.0",
-		"bootstrap": "^5.3.2",
+		"air-datepicker": "^3.5.3",
 		"chart.js": "^4.4.1",
-		"@intracompany/commons_front": "^1.0",
 		"jquery": "^3.7.1",
 		"pinia": "^2.1.7",
-		"v-calendar": "^3.1.2",
 		"vue-chartjs": "^5.3.0"
 	}
 }

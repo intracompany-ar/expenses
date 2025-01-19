@@ -4,7 +4,7 @@ interface AuthStoreState {
 	user: null | object;
 }
 
-export const useAuthStore = defineStore('auth', {
+export const useAuth = defineStore('auth', {
 
 	state: (): AuthStoreState => ({
 		user: null,
@@ -18,7 +18,7 @@ export const useAuthStore = defineStore('auth', {
 		
 		getUser: (state) => state.user,
 		isAuthenticated: (state) => {
-			const token = useTokenStore()
+			const token = useToken()
 			return token.getStatus
 		},
 	},
@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('auth', {
 	actions: {
 		async login(formData: object) {
 			try {
-				const token = useTokenStore()
+				const token = useToken()
 				const { data, error } = await useApiFetch('/api/login', {
 					method: 'POST',
 					body: { ...formData }
@@ -44,7 +44,7 @@ export const useAuthStore = defineStore('auth', {
 
 		async logout() {
 			try {
-				const token = useTokenStore()
+				const token = useToken()
 				const response = await useApiFetch('/api/logout', { method: 'POST' });
 				token.removeToken();
 				this.$reset()

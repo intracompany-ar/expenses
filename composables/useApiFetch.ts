@@ -4,7 +4,7 @@ import type { UseFetchOptions } from '#app'
 
 export async function useApiFetch<T>(path: string | (() => string), options: UseFetchOptions<T> = {}) {
 
-	const tokenStore = useTokenStore()
+	const tokenStore = useToken()
 	
 	const config = useRuntimeConfig()
 

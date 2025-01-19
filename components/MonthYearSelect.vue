@@ -29,8 +29,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="row py-3 bg-indigo-200">
-        <div class="offset-3 col-6 text-center">
+    <div class="py-3 bg-secondary text-white">
+        <div class="text-center">
             <input type="text" id="monthyear" name="monthyear" class="text-center form-control form-control-lg"
                 :value="storeMonthYear.month + '/' + storeMonthYear.year" />
         </div>

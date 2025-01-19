@@ -43,54 +43,52 @@ function getBalances() {
     <!-- SIN USO POR AHORA <SelectPresupuesto/> -->
     <AppAlert v-if="message" :message="message" />
     <MonthYearSelect v-on:selected="getBalances()" />
-
-    <div class="container mx-auto">
-        <div class="flex flex-col pt-2">
-            <b class="text-lg">Saldo de Caja</b>
+    
+    <v-container max-width="800">
+        <div class="pt-2">
+            <b class="text-h5">Saldo de Caja</b>
             <div class="text-center">
-                <h1 class="text-4xl font-bold text-gray-800">${{ balanceAcumulado }}</h1>
+                <h1 class="text-4xl font-bold text-white">${{ balanceAcumulado }}</h1>
             </div>
             <!-- <MensualSwitch/> -->
         </div>
 
         <hr class="my-4">
-
-        <div class="flex flex-col pt-2">
-            <b class="text-lg">Detalle Mensual</b>
-            <div class="bg-gray-100 rounded-md p-4 max-h-100 overflow-y-auto">
-                <ShowCategory v-on:expose="setChildMethod" color="bg-green-400 my-2"
-                    route-show="/journal-entries-by-account/in" route-create="/create-journal-entry/in" category="Ingresos">
-                    <UIcon name="i-heroicons-currency-dollar-solid" />
-                </ShowCategory>
-                <ShowCategory v-on:expose="setChildMethod" color="bg-red-400" route-show="/journal-entries-by-account/out"
-                    route-create="/create-journal-entry/out" category="Egresos">
-                    <UIcon name="i-heroicons-solid-credit-card" />
-                </ShowCategory>
-                <!-- <ShowCategory color="bg-yellow-500" category="Ahorros"></ShowCategory>
-                <ShowCategory color="bg-blue-500" category="Tarjetas"></ShowCategory> -->
-                <!-- Resumen Mensual -->
-                <!-- <CircularChart /> -->
+        
+        <h5 class="text-h5 text-white">Detalle Mensual</h5>
+        
+        <ShowCategory v-on:expose="setChildMethod" color="success"
+            route-show="/journal-entries-by-account/in" route-create="/create-journal-entry/in" category="Ingresos">
+            <v-icon icon="fas fa-circle-dollar-to-slot"></v-icon>
+        </ShowCategory>
+        <ShowCategory v-on:expose="setChildMethod" color="deep-orange" route-show="/journal-entries-by-account/out"
+            route-create="/create-journal-entry/out" category="Egresos">
+            <v-icon icon="fas fa-money-check-dollar"></v-icon>
+        </ShowCategory>
+        <!-- <ShowCategory color="bg-yellow-500" category="Ahorros"></ShowCategory>
+        <ShowCategory color="bg-blue-500" category="Tarjetas"></ShowCategory> -->
+        <!-- Resumen Mensual -->
+        <!-- <CircularChart /> -->
+        
+        <div v-if="$pwa?.isPWAInstalled">
+            PWA Instalado
+    
+            <div v-if="$pwa.needRefresh">
+                <span>
+                    Hay nuevo contenido disponible, haga click en recargar para actualizar.
+                </span>
+                <button @click="$pwa.updateServiceWorker()">
+                    Recargar
+                </button>
             </div>
         </div>
-    </div>
-    <div v-if="$pwa?.isPWAInstalled">
-        PWA Instalado
-
-        <div v-if="$pwa.needRefresh">
-            <span>
-                Hay nuevo contenido disponible, haga click en recargar para actualizar.
-            </span>
-            <button @click="$pwa.updateServiceWorker()">
-                Recargar
-            </button>
+        <div v-else>
+            <div class="m-2 mt-4">
+                <a class="p-2 rounded-md font-bold border-pink bg-blue-500" href="" v-on:click.prevent="installPwa">
+                    <v-icon icon="fas fa-link"></v-icon>
+                    Instalar APP/PWA
+                </a>
+            </div>
         </div>
-    </div>
-    <div v-else>
-        <div class="m-2 mt-4">
-            <a class="p-2 rounded-md font-bold border-pink bg-blue-500" href="" v-on:click.prevent="installPwa">
-                <UIcon name="i-heroicons-solid-link" /> 
-                Instalar APP/PWA
-            </a>
-        </div>
-    </div>
+    </v-container>
 </template>

@@ -1,12 +1,16 @@
 <script setup>
-import $ from 'jquery'
-import { format } from 'date-fns'
-
+import dayjs from 'dayjs';
 const route = useRoute()
 
-const date = ref(new Date())
 const rows = ref([]);
 const errors = ref(null);
+
+const dataForm = reactive({
+	amount: 0,
+	journal_entry_template_id: '',
+	observation: '',
+	posting_date: null, // dayjs().format('YYYY-MM-DD')
+});
 
 onMounted(() => {
 	getTemplates()
@@ -19,17 +23,11 @@ async function getTemplates() {
 }
 
 async function store() {
-	const formData = $('#form-create').serializeArray();
-	const jsonData = {};
-
-	formData.forEach((field) => {
-		jsonData[field.name] = field.value;
-	});
-
 	try {
+		dataForm.posting_date = dayjs(dataForm.posting_date).format('YYYY-MM-DD');
 		const { data, error } = await useApiFetch('/api/journalEntry/store', {
 			method: 'POST',
-			body: JSON.stringify(jsonData)
+			body: dataForm
 		});
 		if (error.value) {
 			throw error;
@@ -43,57 +41,81 @@ async function store() {
 </script>
 
 <template>
-	<form method="POST" v-on:submit.prevent="store" id="form-create" class="bg-gray-300">
+	<v-form v-on:submit.prevent="store" id="form-create">
+		<v-container>
+			<v-row>
+				<v-col
+					class="text-center"
+					offset="4"
+					cols="4"
+					md="4"
+					>
+					
+					<v-number-input
+						controlVariant="default"
+						label="IMPORTE"
+						:inset="false"
+						v-model="dataForm.amount"
+						name="amount"
+					></v-number-input>
 
+				</v-col>
+			</v-row>
 
-		<div class="p-4"
-			:class="{ 'flex items-center justify-center': true, 'bg-red-400': route.params.inOut == 'out', 'bg-green-400': route.params.inOut == 'in' }">
-			<div>
-				<h3 class="text-white font-bold">NUEVO {{ route.params.inOut == 'out' ? 'GASTO' : 'INGRESO' }}</h3>
-				<UInput name="amount" type="number" placeholder="Importe" size="xl" />
+			<v-row>
+				<v-col
+					class="text-center"
+					cols="6"
+					md="4"
+					>
+					<v-select
+						v-model="dataForm.journal_entry_template_id"
+						label="Cuenta"
+						:items="rows"
+						item-title="name"
+						item-value="id"
+						id="category-select" 
+						name="journal_entry_template_id"
+					></v-select>
+				</v-col>
+				<v-col
+					class="text-center"
+					cols="6"
+					md="4"
+					>
+					<v-text-field
+						label="En Concepto de:"
+						v-model="dataForm.observation"
+						name="observation"
+						>
+					</v-text-field>
+				</v-col>
+			</v-row>
+
+			<v-row class="text-center">
+				<v-col
+					class="text-center"
+					cols="6"
+					md="4"
+					>
+					<v-date-input  
+						label="Fecha Contable"
+						v-model="dataForm.posting_date" 
+					></v-date-input>
+				</v-col>
+
+				<v-col>
+					<v-btn type="submit" :color="route.params.inOut == 'out' ? 'red' : 'green'" size="x-large">INSERTAR {{ (route.params.inOut == 'out' ? 'GASTO' : 'INGRESO') }}</v-btn>
+				</v-col>
+			</v-row>
+
+			<div v-if="errors" class="alert alert-danger  col-span-3" role="alert">
+				<ul>
+					<li v-for="error in errors">{{ error[0] }}</li>
+				</ul>
 			</div>
-		</div>
-
-		<div class="container mx-auto p-4 ">
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-2">
-				<div class="my-2">
-					<UFormGroup label="Cuenta">
-						<USelect :options="rows" id="category-select" name="journal_entry_template_id"
-							option-attribute="name" value-attribute="id" />
-					</UFormGroup>
-				</div>
-
-				<div class="my-2">
-					<UFormGroup label="En concepto de">
-						<UInput Name="observation" />
-					</UFormGroup>
-				</div>
-
-				<div class="my-2 flex items-center justify-center">
-					<UFormGroup label="Fecha Contable">
-						<UPopover :popper="{ placement: 'bottom-start' }">
-							<input type="hidden" name="posting_date" :value="format(date, 'yyyy-MM-dd')" />
-							<UButton icon="i-heroicons-calendar-days-20-solid" :label="format(date, 'd MMM, yyy')" />
-							<template #panel="{ close }">
-								<DatePicker v-model="date" @close="close" name="posting_date" />
-							</template>
-						</UPopover>
-					</UFormGroup>
-				</div>
-
-				<div class="text-center mt-4  md:col-span-3">
-					<UButton type="submit" :color="route.params.inOut == 'out' ? 'red' : 'green'"
-						:ui="{ rounded: 'rounded-full' }" size="xl">INSERTAR</UButton>
-				</div>
-
-				<div v-if="errors" class="alert alert-danger  col-span-3" role="alert">
-					<ul>
-						<li v-for="error in errors">{{ error[0] }}</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</form>
+		</v-container>
+	</v-form>
 </template>
 
 

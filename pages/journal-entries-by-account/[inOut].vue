@@ -33,11 +33,10 @@ async function getRows() {
 <template>
     <MonthYearSelect v-on:selected="getRows()" />
 
-    <div class="p-4 mb-3 text-white-100"
-        :class="{ 'bg-red-300': route.params.inOut == 'out', 'bg-green-300': route.params.inOut == 'in' }">
-        <h4>Total de {{ route.params.inOut == 'out' ? 'Gastos' : 'Ingresos' }}</h4>
-        <!-- <h1>$ {{ balance }}</h1> -->
-    </div>
+    <v-sheet class="d-flex mb-6 bg-success text-white" :class="{ 'bg-red-300': route.params.inOut == 'out', 'bg-green-300': route.params.inOut == 'in' }">
+        <v-sheet class="ma-2 pa-2 me-auto">Total de {{ route.params.inOut == 'out' ? 'Gastos' : 'Ingresos' }}</v-sheet>
+        <v-sheet class="ma-2 pa-2">$ {{ (accounts && accounts.length ) ? accounts.reduce((acc, account) => acc + parseFloat(account.balance), 0) : 0 }}</v-sheet>
+    </v-sheet>
 
     <div v-if="accounts">
         <div v-for="account in accounts" class="p-2">
@@ -45,11 +44,11 @@ async function getRows() {
                 <div class="flex-1">
                     <NuxtLink
                         :to="'/journal-entry-line/' + storeMonthYear.month + '/' + storeMonthYear.year + '/' + account.account.id">
-                        <small class="text-gray-800 font-bold">{{ account?.account?.name }}</small>
+                        <small class="text-white font-bold">{{ account?.account?.name }}</small>
                     </NuxtLink>
                 </div>
                 <div class="flex-none text-right">
-                    <h5 class="text-green-800 font-bold">$ {{ Math.round(account?.balance * 100 / 100) }}</h5>
+                    <h5 class="text-white font-bold">$ {{ Math.round(account?.balance * 100 / 100) }}</h5>
                 </div>
             </div>
             <hr class="w-full mt-2">

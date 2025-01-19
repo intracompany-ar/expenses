@@ -5,7 +5,7 @@ interface TokenStoreState {
 	loggedIn: boolean;
 }
 
-export const useTokenStore = defineStore('token', {
+export const useToken = defineStore('token', {
 
 	state: (): TokenStoreState => ({ 
 		token: null,

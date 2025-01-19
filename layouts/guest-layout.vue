@@ -1,8 +1,5 @@
-<script setup>
-</script>
-
 <template>
-    <UContainer>
-        <slot/>
-    </UContainer>
+    <v-app>
+        <slot></slot>
+    </v-app>
 </template>

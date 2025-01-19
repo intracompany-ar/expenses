@@ -17,19 +17,21 @@ useHead({
 })
 
 useSeoMeta({
-  	title: 'Expenses | IceO App',
-  	ogTitle: 'Expenses | IceO App',
-  	description: 'Aplicación para llevar registro de ingresos y egeresos de tu vida cotidianda de forma simplificada. Un buen control de tu contabilidad es la clave del éxito financiero.',
-  	ogDescription: 'Aplicación para llevar registro de ingresos y egeresos de tu vida cotidianda de forma simplificada. Un buen control de tu contabilidad es la clave del éxito financiero.',
-  	// ogImage: 'https://example.com/image.png',
-  	// twitterCard: 'summary_large_image',
+	title: 'Expenses | IceO App',
+	ogTitle: 'Expenses | IceO App',
+	description: 'Aplicación para llevar registro de ingresos y egeresos de tu vida cotidianda de forma simplificada. Un buen control de tu contabilidad es la clave del éxito financiero.',
+	ogDescription: 'Aplicación para llevar registro de ingresos y egeresos de tu vida cotidianda de forma simplificada. Un buen control de tu contabilidad es la clave del éxito financiero.',
+	// ogImage: 'https://example.com/image.png',
+	// twitterCard: 'summary_large_image',
 })
 </script>
 
 
 <template>
 	<NuxtLayout>
-		<NuxtPage />
+		<v-app>
+			<NuxtPage />
+		</v-app>
 	</NuxtLayout>
-	<!-- <NuxtWelcome /> -->
 </template>
+<!-- <NuxtWelcome /> -->
