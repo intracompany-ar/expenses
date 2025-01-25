@@ -33,7 +33,7 @@ async function getRows() {
 
 		<div class="row bg-blue-200">
 			<div class="col-12 text-center">
-				<h1>${{ journalEntry?.journal_entry_lines?.reduce((total, line) => total + parseFloat(line.debit), 0) }}
+				<h1>${{ journalEntry?.lines?.reduce((total, line) => total + parseFloat(line.debit), 0) }}
 				</h1>
 			</div>
 		</div>
@@ -59,7 +59,7 @@ async function getRows() {
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="lines in journalEntry.journal_entry_lines">
+				<tr v-for="lines in journalEntry.lines">
 					<td>{{ lines.account.name }}</td>
 					<td class="text-end">{{ lines.credit != 0 ? Math.round(lines.credit * 100) / 100 : '' }}</td>
 					<td class="text-end">{{ lines.debit != 0 ? Math.round(lines.debit * 100) / 100 : '' }}</td>
