@@ -23,7 +23,9 @@ const authStore = useAuth();
 			<v-spacer></v-spacer>
 
 			<span class="text-white hover:text-gray-300 pt-1">
-				{{ authStore.user?.name ?? 'No logueado' }}
+				<div v-if="authStore.user">
+					{{authStore.user?.name}}
+				</div>
 			</span>
 
 			<v-menu>
@@ -46,7 +48,6 @@ const authStore = useAuth();
 <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Usuario</a> -->
 <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Categorías</a> -->
 <!-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mi Balance</a> -->
-<!-- v-if="authStore.isAuthenticated" -->
 <!-- <v-list-item-title>{{ item.title }}</v-list-item-title> -->
 
 <style scoped></style>

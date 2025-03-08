@@ -4,7 +4,6 @@ const storeMonthYear = useMonthYearStore();
 const route = useRoute()
 
 definePageMeta({
-    middleware: ['auth'],
     layout: 'simple'
 })
 

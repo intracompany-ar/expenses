@@ -2,57 +2,39 @@ import { defineStore } from 'pinia'
 
 interface AuthStoreState {
 	user: null | object;
+	isLoading: boolean;
 }
 
 export const useAuth = defineStore('auth', {
 
 	state: (): AuthStoreState => ({
 		user: null,
+		isLoading: false
 	}),
 
-	persist: {
-		paths: ['user'],
-	},
-
 	getters: {
-		
 		getUser: (state) => state.user,
-		isAuthenticated: (state) => {
-			const token = useToken()
-			return token.getStatus
-		},
 	},
 
 	actions: {
-		async login(formData: object) {
-			try {
-				const token = useToken()
-				const { data, error } = await useApiFetch('/api/login', {
-					method: 'POST',
-					body: { ...formData }
-				});
-				if (error.value) {
-					throw error;
-				}
-				token.setToken(data.value.data.token);
-				this.user = data.value.data.user
-				navigateTo('/')
-			} catch (error) {
-				throw error;
-			};
+
+		async fetchUser() {
+			const { data, error } = await useApiFetch(`/api/user/me`);
+			// if (error.value) {
+			// 	this.user = null;
+			// 	throw error;
+			// }
+			this.user = data;
 		},
 
 		async logout() {
-			try {
-				const token = useToken()
-				const response = await useApiFetch('/api/logout', { method: 'POST' });
-				token.removeToken();
-				this.$reset()
-				console.log(response)
-				navigateTo('/login')
-			} catch (error) {
-				throw error;
-			};
+			await useApiFetch('/logout', {
+				method: 'POST',
+			});
+
+			this.user = null;
+			window.location.href = useRuntimeConfig().public.authBase + '/login'; // Lo mismo que return navigateTo(useRuntimeConfig().public.authBase + "/login", { external: true }); pero esta es la forma Nuxt
+			this.$reset()
 		}
 	}
 

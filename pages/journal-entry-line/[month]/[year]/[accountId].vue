@@ -2,7 +2,6 @@
 const route = useRoute()
 
 definePageMeta({
-	middleware: ['auth'],
 	layout: 'simple'
 })
 

@@ -7,7 +7,7 @@ const storeMonthYear = useMonthYearStore();
 const route = useRoute()
 
 definePageMeta({
-    middleware: ['auth'],
+    // middleware: ['auth.global'],
     layout: 'default'
 })
 
@@ -47,7 +47,7 @@ function getBalances() {
     <v-container max-width="800">
         <div class="pt-2">
             <b class="text-h5">Saldo de Caja</b>
-            <div class="text-center">
+            <div class="text-center" v-if="balanceAcumulado">
                 <h1 class="text-4xl font-bold text-white">${{ balanceAcumulado }}</h1>
             </div>
             <!-- <MensualSwitch/> -->
