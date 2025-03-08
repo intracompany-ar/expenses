@@ -19,12 +19,19 @@ export const useAuth = defineStore('auth', {
 	actions: {
 
 		async fetchUser() {
-			const { data, error } = await useApiFetch(`/api/user/me`);
-			// if (error.value) {
-			// 	this.user = null;
-			// 	throw error;
-			// }
-			this.user = data;
+			this.isLoading = true;
+			try {
+				const { data, error } = await useApiFetch(`/api/user/me`);
+				// if (error.value) {
+				// 	this.user = null;
+				// 	throw error;
+				// }
+				this.user = data;
+			} catch (error) {
+				this.user = null;
+			} finally {
+				this.isLoading = false;
+			}
 		},
 
 		async logout() {
