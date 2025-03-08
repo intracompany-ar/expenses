@@ -21,6 +21,7 @@ export async function useApiFetch<T>(path: string | (() => string), options: Use
     const data = ref<T | null>(null);
     const error = ref<Error | null>(null);
 
+    console.log("Ejecutando fetchUser() en:", process.server ? "Backend" : "Frontend");
     try {
         data.value = await $fetch(config.public.apiBase+path, {
             credentials: 'include',
