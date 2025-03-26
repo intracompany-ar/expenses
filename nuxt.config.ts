@@ -25,7 +25,7 @@ export default defineNuxtConfig({
         },
         // 'commons_front',
         "@pinia/nuxt",
-        "@pinia-plugin-persistedstate/nuxt",
+        "pinia-plugin-persistedstate/nuxt",
         "dayjs-nuxt",
         "@vite-pwa/nuxt",
     ],
@@ -63,7 +63,6 @@ export default defineNuxtConfig({
 
     // Variables por entorno
     $production: {
-        // appId: 8
         //   routeRules: {
         // '/**': { isr: true }
         //   }
@@ -80,7 +79,8 @@ export default defineNuxtConfig({
         public: {
             appBase: process.env.APP_URL,
             apiBase: process.env.API_URL,
-			authBase: process.env.AUTH_URL
+			authBase: process.env.AUTH_URL,
+            appId: process.env.APP_ID,
         },
     },
 

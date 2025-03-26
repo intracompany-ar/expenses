@@ -16,15 +16,14 @@ export async function useApiFetch<T>(path: string | (() => string), options: Use
             headers['X-XSRF-TOKEN'] = token.value;
         }
     }
-
 	
     const data = ref<T | null>(null);
     const error = ref<Error | null>(null);
 
-    console.log("Ejecutando fetchUser() en:", process.server ? "Backend" : "Frontend");
+    // console.log("Ejecutando fetchUser() en:", process.server ? "Backend" : "Frontend");
     try {
         data.value = await $fetch(config.public.apiBase+path, {
-            credentials: 'include',
+            credentials: 'include',// Impresincible Para cross-origin
             // watch: false,
             ...options,
             headers
@@ -33,5 +32,7 @@ export async function useApiFetch<T>(path: string | (() => string), options: Use
     catch (e) {
         error.value = e as Error
     }
-    return { data: ref(data), error: ref(error) }
+    
+    return { data, error }
+
 }

@@ -1,17 +1,18 @@
-import { useAuth } from "~/stores/useAuth";
+import { useAuth } from '~/stores/useAuth'
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
     // https://nuxt.com/docs/guide/directory-structure/middleware#when-middleware-runs
     if (import.meta.server) return
 
-    const auth = useAuth();
-    
-    if (!auth.user && !auth.isLoading) {
-        await auth.fetchUser();
+    const auth = useAuth()
+
+    if (!auth.getUser?.value && !auth.isLoading?.value) {
+        await auth.fetchUser()
     }
-    
-    if (!auth.user) {
-        console.log("Redirecting to login");
-        return navigateTo(useRuntimeConfig().public.authBase + "/login", { external: true });
+
+    if (!auth.isLoggedIn) {
+        const message = auth.fetchErrorMessage?.value ?? 'No está logueado'
+        console.log('🔐 Redirecting to login...', message)
+        return navigateTo(useRuntimeConfig().public.authBase + '/login?app_id='+useRuntimeConfig().public.appId+'&message=' + encodeURIComponent(message), { external: true })
     }
-});
+})
