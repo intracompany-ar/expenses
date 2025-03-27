@@ -23,7 +23,7 @@
 	},
 	"dependencies": {
 		"@date-io/date-fns": "^3.2.0",
-		"@intracompany/commons_front": "^1.0.96",
+		"@intracompany/nuxt-kit": "^1.0",
 		"@nuxt/vite-builder": "^3.8.2",
 		"@pinia/nuxt": "^0.10.1",
 		"@popperjs/core": "^2.11.8",

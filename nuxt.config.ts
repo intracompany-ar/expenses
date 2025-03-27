@@ -1,4 +1,5 @@
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+
 export default defineNuxtConfig({
     colorMode: {
         preference: "dark",
@@ -23,16 +24,17 @@ export default defineNuxtConfig({
                 config.plugins.push(vuetify({ autoImport: true }));
             });
         },
-        // 'commons_front',
         "@pinia/nuxt",
         "pinia-plugin-persistedstate/nuxt",
         "dayjs-nuxt",
+        "@intracompany/nuxt-kit",
         "@vite-pwa/nuxt",
     ],
 
     css: ["/assets/css/main.css"],
 
     build: {
+        // Le indica a nuxt que estos paquetes tiene componentes que debe considerarse parte del proyecto, los .vue por ejemplo
         transpile: ["vuetify"],
     },
 
@@ -81,19 +83,9 @@ export default defineNuxtConfig({
             apiBase: process.env.API_URL,
 			authBase: process.env.AUTH_URL,
             appId: process.env.APP_ID,
+            redirectAuth: `${process.env.AUTH_URL}/login?app_id=${process.env.APP_ID}`,
         },
     },
-
-    // ,
-
-    // imports: {
-    // 	presets: [
-    // 		{
-    // 			from: 'commons_front',
-    // 			imports: ['useStoreAdvices']
-    // 		}
-    // 	]
-    // }
 
     pwa: {
         manifest: false, // Para que tome desde el archivo manifest.webmanifest ó manifest.json, manifest.json intenté pero tira error, uso webmanifest
