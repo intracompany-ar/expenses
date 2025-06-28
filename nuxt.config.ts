@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     devtools: { enabled: false },
 
     vite: {
+        plugins: [
+            vuetify({ autoImport: true }),
+        ],
         vue: {
             customElement: true,
             template: {
@@ -18,12 +21,12 @@ export default defineNuxtConfig({
     },
 
     modules: [
-        (_options, nuxt) => {
-            nuxt.hooks.hook("vite:extendConfig", (config) => {
-                // @ts-expect-error
-                config.plugins.push(vuetify({ autoImport: true }));
-            });
-        },
+        // (_options, nuxt) => {
+        //     nuxt.hooks.hook("vite:extendConfig", (config) => {
+        //         // @ts-expect-error
+        //         config.plugins.push(vuetify({ autoImport: true }));
+        //     });
+        // },
         "@pinia/nuxt",
         "pinia-plugin-persistedstate/nuxt",
         "dayjs-nuxt",

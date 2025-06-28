@@ -4,9 +4,7 @@ import { aliases, fa } from 'vuetify/iconsets/fa'
 import { md3 } from 'vuetify/blueprints'
 import { createVuetify } from 'vuetify'
 import 'vuetify/styles'
-import { VNumberInput } from 'vuetify/labs/VNumberInput'
-import { VDateInput } from 'vuetify/labs/VDateInput'
-
+import {VDateInput } from "vuetify/labs/components"
 
 export default defineNuxtPlugin((app) => {
     const vuetify = createVuetify({
@@ -14,7 +12,6 @@ export default defineNuxtPlugin((app) => {
             defaultTheme: 'dark'
         },
         components: {
-            VNumberInput,
             VDateInput
         },
         blueprint: md3,
