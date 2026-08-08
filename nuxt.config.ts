@@ -5,7 +5,6 @@ export default defineNuxtConfig({
         preference: "dark",
     },
 
-    srcDir: "./",
     devtools: { enabled: false },
 
     vite: {
@@ -30,11 +29,10 @@ export default defineNuxtConfig({
         "@pinia/nuxt",
         "pinia-plugin-persistedstate/nuxt",
         "dayjs-nuxt",
-        "@intracompany/nuxt-kit",
         "@vite-pwa/nuxt",
     ],
 
-    css: ["/assets/css/main.css"],
+    css: ["~/assets/css/main.css"],
 
     build: {
         // Le indica a nuxt que estos paquetes tiene componentes que debe considerarse parte del proyecto, los .vue por ejemplo
@@ -104,5 +102,5 @@ export default defineNuxtConfig({
         },
     },
 
-    compatibilityDate: "2025-01-19",
+    compatibilityDate: "2026-08-07",
 });

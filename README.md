@@ -1,6 +1,11 @@
 # Gestión de gastos personales
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Look at the [Nuxt 4 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+
+## Requirements
+
+- Node.js 20.19 or newer
+- npm 10 or newer
 
 ## Setup
 
